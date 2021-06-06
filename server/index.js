@@ -1,13 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const typeDefs = require("./src/graphql/typeDefs");
 const resolvers = require("./src/graphql/resolvers");
 const { ApolloServer } = require("apollo-server-express");
 
 const app = express();
 
-const url =
-  "mongodb+srv://leandro:L34ndro123@entria.d1cfn.mongodb.net/EntriaChallenge?retryWrites=true&w=majority";
+dotenv.config();
+const url = process.env.MONGODB_URI;
 
 const connect = mongoose.connect(url, { useNewUrlParser: true });
 connect.then(
